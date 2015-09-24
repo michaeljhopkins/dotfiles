@@ -104,7 +104,7 @@ load-starter-plugin-list() {
   zgen load rimraf/k
 
   # Bullet train prompt setup
-  zgen load bhilburn/powerlevel9k powerlevel9k next
+  zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
   # Save it all to init script
   zgen save
