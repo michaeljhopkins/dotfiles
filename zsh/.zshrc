@@ -33,8 +33,8 @@ fi
 # Now that we have $PATH set up and ssh keys loaded, configure zgen.
 
 # start zgen
-if [ -f ~/.dotfiles/zsh/zgen/.zgen_setup ]; then
-  source ~/.dotfiles/zsh/zgen/.zgen_setup
+if [ -f ~/.dotfiles/zsh/zgen/zgen_setup ]; then
+  source ~/.dotfiles/zsh/zgen/zgen_setup
 fi
 # end zgen
 
@@ -57,6 +57,7 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_verify
+setopt EXTENDED_HISTORY
 
 # Share your history across all your terminal windows
 setopt share_history
@@ -70,8 +71,6 @@ setopt pushd_ignore_dups
 HISTFILE=~/.zsh_history
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
-setopt EXTENDED_HISTORY
-
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 export TERM="xterm-256color"
 # Long running processes should return time after they complete. Specified
@@ -94,14 +93,14 @@ bindkey " " globalias
 bindkey "^ " magic-space           # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
 
-# Customize to your needs...
-# Stuff that works on bash or zsh
-if [ -r ~/.sh_aliases ]; then
-  source ~/.sh_aliases
+if [ -d ~/.dotfiles/zsh/functions ]; then
+  for function in ~/.dotfiles/zsh/functions/*
+  do
+    source "$function"
+  done
 fi
-
-source ~/.dotfiles/zsh/aliases/.zsh_aliases
-source ~/.dotfiles/zsh/functions/.zsh_functions
+source ~/.dotfiles/zsh/aliases/zsh_aliases
+source ~/.pythonize.startup
 
 # Speed up autocomplete, force prefix mapping
 zstyle ':completion:*' accept-exact '*(N)'
@@ -129,15 +128,6 @@ zstyle ":completion:*" verbose true
 
 zstyle ":completion:*:*:kill:*:processes" list-colors "=(#b) #([0-9]#)*=0=01;31"
 zstyle ":completion:*:kill:*" command "ps -u $USER -o pid,%cpu,tty,cputime,cmd"
-
-if [ -n "$(ls ~/.dotfiles/zsh/completions)" ]; then
-  for dotfile in ~/.dotfiles/zsh/completions/*
-  do
-    if [ -r "${dotfile}" ]; then
-      source "${dotfile}"
-    fi
-  done
-fi
 
 ssh-add -l
 
@@ -171,5 +161,6 @@ if [ -d "${RBENV_ROOT}" ]; then
 fi
 
 export PATH="$PATH:/home/m/.local/bin:vendor/bin"
+export MSF_DATABASE_CONFIG="/opt/metasploit-framework/config/database.yml"
 
 dedupe_path

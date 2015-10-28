@@ -8,24 +8,7 @@
 
 # Clone zgen if you haven't already
 
-zshPlugins=(
-    pip
-    sudo
-    colored-man
-    github
-    python
-    vagrant
-    cp
-    extract
-    bower
-    node
-    nvm
-    npm
-    composer
-    rbenv
-    gem
-    bgnotify
-)
+zshPlugins=(pip sudo github python vagrant cp extract bower node nvm npm composer rbenv gem bgnotify) 
 
 if [ ! -f ~/zgen/zgen.zsh ]; then
   pushd ~
@@ -34,7 +17,7 @@ if [ ! -f ~/zgen/zgen.zsh ]; then
 fi
 source ~/zgen/zgen.zsh
 
-load-starter-plugin-list() {
+setup-zgen-repos() {
   ZGEN_LOADED=()
   ZGEN_COMPLETIONS=()
 
@@ -72,11 +55,9 @@ load-starter-plugin-list() {
   # Adds aliases to open your current repo & branch on github.
   zgen load peterhurford/git-it-on.zsh
 
-  for i in "${zshPlugins[@]}"; do
-    zgen oh-my-zsh plugins/$i
-  done
-
-
+  # k is a zsh script / plugin to make directory listings more readable,
+  # adding a bit of color and some git status information on files and directories
+  zgen load rimraf/k
 
   # A set of shell functions to make it easy to install small apps and
   # utilities distributed with pip.
@@ -87,8 +68,9 @@ load-starter-plugin-list() {
   # Load more completion files for zsh from the zsh-lovers github repo
   zgen load zsh-users/zsh-completions src
 
-  # Docker completion
-  zgen load srijanshetty/docker-zsh
+  for i in "${zshPlugins[@]}"; do
+    zgen oh-my-zsh plugins/$i
+  done
 
   # Load me last
   GENCOMPL_FPATH=$HOME/.zsh/complete
@@ -97,25 +79,11 @@ load-starter-plugin-list() {
   # if they have getopt-style help text.
   zgen load RobSis/zsh-completion-generator
 
-  zgen load yonchu/ranking-shell-history
-
-  # k is a zsh script / plugin to make directory listings more readable,
-  # adding a bit of color and some git status information on files and directories
-  zgen load rimraf/k
-
   # Bullet train prompt setup
   zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
   # Save it all to init script
   zgen save
-}
-
-setup-zgen-repos() {
-  if [ -f ~/.zgen-local-plugins ]; then
-    source ~/.zgen-local-plugins
-  else
-    load-starter-plugin-list
-  fi
 }
 
 # This comes from https://stackoverflow.com/questions/17878684/best-way-to-get-file-modified-time-in-seconds
@@ -142,16 +110,7 @@ fi
 # repository. Unfortunately, stat will return the modification time of the
 # symlink instead of the target file, so construct a full path to hand off
 # to stat so it returns the modification time of the actual .zgen-setup file.
-REAL_ZGEN_SETUP="${HOME}/$(readlink ~/.zgen-setup)"
-
-# If you don't want my standard starter set of plugins, create .zgen-local-plugins
-# and add your zgen load commands there. Don't forget to zgen save at the end,
-# .zgen-local-plugins replaces the starter list setup, it doesn't add to it.
-#
-# Use readlink in case the user is symlinking from another repo checkout
-if [ -f ~/.zgen-local-plugins ]; then
-  REAL_ZGEN_SETUP="${HOME}/$(readlink ~/.zgen-local-plugins)"
-fi
+REAL_ZGEN_SETUP="/home/m/.dotfiles/zsh/zgen/zgen_setup"
 
 # If .zgen-setup is newer than init.zsh, regenerate init.zsh
 if [ $(get_file_modification_time ${REAL_ZGEN_SETUP}) -gt $(get_file_modification_time ~/.zgen/init.zsh) ]; then
