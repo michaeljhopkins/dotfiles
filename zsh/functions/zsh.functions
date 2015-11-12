@@ -5,32 +5,6 @@
 # Copyright 2006-2015 Joseph Block <jpb@unixorn.net>
 #
 # BSD licensed, see LICENSE.txt
-function masstcpdump () {
-	LOOP=1
-	for f in `iwconfig 2>/dev/null | grep -o "^wlan[1-9]\+"`; do
-		#echo "sudo ifconfig ${f} down"
-		`sudo ifconfig ${f} down`
-		#echo "sudo iwconfig ${f} mode Monitor"
-		`sudo iwconfig ${f} mode Monitor`
-		#echo "sudo ifconfig ${f} up"
-		`sudo ifconfig ${f} up`
-#		if [[ $LOOP -eq 1 ]]; then
-#			sudo iw dev $f set channel 1
-#		elif [[ $LOOP -eq 2 ]]; then
-#			sudo iw dev $f set channel 6
-#		else
-#			sudo iw dev $f set channel 11
-#		fi
-		#echo $ARGS
-		#echo "sudo tcpdump ${ARGS}"
-		sudo tcpdump -s0 -C 50 -W 50 -w "/home/m/pcaps/${f}_${1}" -nni $f -s 0 ip &
-#		LOOP=$((LOOP + 1))
-	done
-}
-function networks() {
-  sudo service networking $1
-  sudo service network-manager $1
-}
 
 function exists() {
   which $1 &> /dev/null
