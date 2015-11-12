@@ -35,8 +35,8 @@ fi
 # Now that we have $PATH set up and ssh keys loaded, configure zgen.
 
 # start zgen
-if [ -f ~/.dotfiles/zsh/zgen/zgen_setup ]; then
-	source ~/.dotfiles/zsh/zgen/zgen_setup
+if [ -f ~/.dotfiles/zsh/zshrc/zgen_setup ]; then
+	source ~/.dotfiles/zsh/zshrc/zgen_setup
 fi
 # end zgen
 
