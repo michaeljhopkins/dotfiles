@@ -4,7 +4,7 @@
 #
 # Copyright 2006-2015 Joseph Block <jpb@unixorn.net>
 #
-# BSD licensed, see LICENSE.txt
+# BSD licensed, see LICENSE.tx
 
 function exists() {
   which $1 &> /dev/null
