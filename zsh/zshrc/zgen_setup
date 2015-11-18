@@ -95,7 +95,7 @@ fi
 # repository. Unfortunately, stat will return the modification time of the
 # symlink instead of the target file, so construct a full path to hand off
 # to stat so it returns the modification time of the actual .zgen-setup file.
-REAL_ZGEN_SETUP="/home/m/.dotfiles/zsh/zgen/zgen_setup"
+REAL_ZGEN_SETUP="~/.dotfiles/zsh/zgen/zgen_setup"
 
 # If .zgen-setup is newer than init.zsh, regenerate init.zsh
 if [ $(get_file_modification_time ${REAL_ZGEN_SETUP}) -gt $(get_file_modification_time ~/.zgen/init.zsh) ]; then

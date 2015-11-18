@@ -22,7 +22,7 @@ setopt correct
 unsetopt correctall
 
 # Base PATH
-PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:/home/m/.composer/vendor/bin
+PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:~/.composer/vendor/bin
 
 if [ -f ~/.ssh/id_rsa ]; then
 	if [ $(ssh-add -l | grep -c ".ssh/id_rsa" ) -eq 0 ]; then

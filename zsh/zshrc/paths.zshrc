@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export PATH="/home/m/.nvm:$PATH"
-export NVM_DIR="/home/m/.nvm"
+export PATH="~/.nvm:$PATH"
+export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 export RBENV_ROOT="${HOME}/.rbenv"
@@ -11,6 +11,6 @@ if [ -d "${RBENV_ROOT}" ]; then
 	eval "$(rbenv init -)"
 fi
 
-export PATH="$PATH:/home/m/.local/bin:vendor/bin"
+export PATH="$PATH:~/.local/bin:vendor/bin"
 export MSF_DATABASE_CONFIG="/opt/metasploit-framework/config/database.yml"
-export PATH="$PATH:/home/m/anaconda/bin/pip"
+export PATH="$PATH:~/anaconda/bin/pip"
