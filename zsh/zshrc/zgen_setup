@@ -8,7 +8,7 @@
 
 # Clone zgen if you haven't already
 
-zshPlugins=(pip sudo github python vagrant cp extract bower node nvm npm composer rbenv gem bgnotify) 
+zshPlugins=(pip sudo github python cp extract bower node nvm npm rbenv gem) 
 
 if [ ! -f ~/zgen/zgen.zsh ]; then
 	pushd ~
