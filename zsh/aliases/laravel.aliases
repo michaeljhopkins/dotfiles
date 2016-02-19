@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-alias art="php artisan"
-alias c="composer"
-alias larafresh="composer dump && rm -rf bootstrap/cache/* storage/framework/sessions/* storage/framework/cache/* storage/framework/views/* vendor node_modules && composer install && php artisan clear-compiled  && php artisan ide-helper:generate && php artisan optimize && php artisan migrate:reload"
-alias asb="cd ~/Projects/Web/asb-client"
