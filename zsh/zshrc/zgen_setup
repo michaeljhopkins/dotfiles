@@ -44,10 +44,6 @@ setup-zgen-repos() {
 	# Warn you when you run a command that you've got an alias for
 	zgen load djui/alias-tips
 
-	# k is a zsh script / plugin to make directory listings more readable,
-	# adding a bit of color and some git status information on files and directories
-	zgen load rimraf/k
-
 	zgen load chrissicool/zsh-256color
 
 	# Load more completion files for zsh from the zsh-lovers github repo
@@ -64,8 +60,7 @@ setup-zgen-repos() {
 	# if they have getopt-style help text.
 	zgen load RobSis/zsh-completion-generator
 
-	# Bullet train prompt setup
-	zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+
 
 	# Save it all to init script
 	zgen save

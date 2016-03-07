@@ -26,14 +26,14 @@ dedupe_path() {
 }
 
 getDotfiles() {
-	if [ -d ~/.dotfiles/zsh/functions ]; then
-		for function in ~/.dotfiles/zsh/functions/*
+	if [ -d $HOME/.dotfiles/zsh/functions ]; then
+		for function in $HOME/.dotfiles/zsh/functions/*
 		do
 			source "$function"
 		done
 	fi
-	if [ -d ~/.dotfiles/zsh/aliases ]; then
-		for alias in ~/.dotfiles/zsh/aliases/*
+	if [ -d $HOME/.dotfiles/zsh/aliases ]; then
+		for alias in $HOME/.dotfiles/zsh/aliases/*
 		do
 			source "$alias"
 		done

@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
+# README
+#
+# In order for this theme to render correctly, you will need a
+# [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts).
+#
+# In addition, I recommend the
+# [Tomorrow Night theme](https://github.com/chriskempson/tomorrow-theme) and, if
+# you're using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over
+# Terminal.app - it has significantly better color fidelity.
 
-# Speed up autocomplete, force prefix mapping
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
+# ------------------------------------------------------------------------------
+# CONFIGURATION
+# The default configuration, that can be overwrite in your .zshrc file
+# ------------------------------------------------------------------------------
 
 # Load any custom zsh completions we've installed
-
-#autoload -Uz compinit
-#compinit
 
 zstyle ":completion:*" auto-description "specify: %d"
 zstyle ":completion:*" completer _expand _complete _correct _approximate

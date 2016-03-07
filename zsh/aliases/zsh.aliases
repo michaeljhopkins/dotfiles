@@ -43,5 +43,4 @@ alias tarxvf="tar xvf"
 alias ..="cd .."
 alias ...="cd ../.."
 alias k="k -Ah"
-alias ls="k"
 alias mycli='mycli -h 127.0.0.1 -u root -p secret'
