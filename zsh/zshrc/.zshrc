@@ -13,7 +13,6 @@ export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-rbenv shell 2.2.3
 
 # === ZGEN stuff ===
 if [ !  -f $HOME/.zgen/zgen.zsh ]; then
@@ -30,6 +29,12 @@ if [ -f $HOME/.ssh/id_rsa ]; then
 		ssh-add $HOME/.ssh/id_rsa
 	fi
 fi
+if [ -f $HOME/.ssh/awskeypair.pem ]; then
+        if [ $(ssh-add -l | grep -c ".ssh/awskeypair.pem" ) -eq 0 ]; then
+                ssh-add $HOME/.ssh/awskeypair.pem
+        fi
+fi
+
 
 
 if [ ! -f ~/zgen/zgen.zsh ]; then
@@ -97,11 +102,6 @@ ssh-add -l
 
 export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
-# Load any remaninging PATH additions
-
-if [ -f $HOME/.dotfiles/zsh/zshrc/paths.zshrc ]; then
-  source $HOME/.dotfiles/zsh/zshrc/paths.zshrc
-fi
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 

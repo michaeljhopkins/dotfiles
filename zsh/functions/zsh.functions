@@ -53,6 +53,10 @@ function mecp () {
   scp "$@" ${SSH_CLIENT%% *}:~/Downloads/;
 }
 
+function sudoforge() {
+  echo "KzO4XK4QRlvAyXvIsFof";
+}
+
 function calc() {
   awk "BEGIN{ print $* }" ;
 }
