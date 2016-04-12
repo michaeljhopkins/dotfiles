@@ -16,26 +16,26 @@ export NVM_DIR="$HOME/.nvm"
 
 # === ZGEN stuff ===
 if [ !  -f $HOME/.zgen/zgen.zsh ]; then
-    echo "Zgen not found, bootstrapping."
-    mkdir -p $HOME/.zgen
-    curl -L https://raw.githubusercontent.com/tarjoilija/zgen/master/zgen.zsh > $HOME/.zgen/zgen.zsh
+  echo "Zgen not found, bootstrapping."
+  mkdir -p $HOME/.zgen
+  curl -L https://raw.githubusercontent.com/tarjoilija/zgen/master/zgen.zsh > $HOME/.zgen/zgen.zsh
 fi
 
 # Base PATH
 PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:$HOME/.composer/vendor/bin
 
 if [ -f $HOME/.ssh/id_rsa ]; then
-	if [ $(ssh-add -l | grep -c ".ssh/id_rsa" ) -eq 0 ]; then
-		ssh-add $HOME/.ssh/id_rsa
-	fi
+  if [ $(ssh-add -l | grep -c ".ssh/id_rsa" ) -eq 0 ]; then
+    ssh-add $HOME/.ssh/id_rsa
+  fi
 fi
 if [ -f $HOME/.ssh/awskeypair.pem ]; then
-        if [ $(ssh-add -l | grep -c ".ssh/awskeypair.pem" ) -eq 0 ]; then
-                ssh-add $HOME/.ssh/awskeypair.pem
-        fi
+  if [ $(ssh-add -l | grep -c ".ssh/awskeypair.pem" ) -eq 0 ]; then
+    ssh-add $HOME/.ssh/awskeypair.pem
+  fi
 fi
 
-
+source ~/.dotfiles/zsh/functions/directory-history.plugin.zsh
 
 if [ ! -f ~/zgen/zgen.zsh ]; then
   pushd ~
@@ -64,8 +64,13 @@ zgen load t413/zsh-background-notify
 zgen load zsh-users/zsh-syntax-highlighting
 zgen load zsh-users/zsh-history-substring-search
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+# Bind up/down arrow keys to navigate through your history
+bindkey '\e[A' directory-history-search-backward
+bindkey '\e[B' directory-history-search-forward
+
+# Bind CTRL+k and CTRL+j to substring search
+bindkey '^j' history-substring-search-up
+bindkey '^k' history-substring-search-down
 zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
 zgen load zsh-users/zsh-completions src
@@ -101,8 +106,5 @@ fi
 ssh-add -l
 
 export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
 dedupe_path
