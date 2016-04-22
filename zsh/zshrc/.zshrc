@@ -35,7 +35,9 @@ if [ -f $HOME/.ssh/awskeypair.pem ]; then
   fi
 fi
 
-source ~/.dotfiles/zsh/functions/directory-history.plugin.zsh
+if [ -f $HOME/.dotfiles/zsh/functions/directory-history.plugin.zsh ]; then
+  source ~/.dotfiles/zsh/functions/directory-history.plugin.zsh
+fi
 
 if [ ! -f ~/zgen/zgen.zsh ]; then
   pushd ~
@@ -65,8 +67,8 @@ zgen load zsh-users/zsh-syntax-highlighting
 zgen load zsh-users/zsh-history-substring-search
 zmodload zsh/terminfo
 # Bind up/down arrow keys to navigate through your history
-bindkey '\e[A' directory-history-search-backward
-bindkey '\e[B' directory-history-search-forward
+#bindkey '\e[A' directory-history-search-backward
+#bindkey '\e[B' directory-history-search-forward
 
 # Bind CTRL+k and CTRL+j to substring search
 bindkey '^j' history-substring-search-up
@@ -104,7 +106,5 @@ if [ -f $HOME/.dotfiles/zsh/zshrc/globalias.zshrc ]; then
 fi
 
 ssh-add -l
-
-export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 dedupe_path
