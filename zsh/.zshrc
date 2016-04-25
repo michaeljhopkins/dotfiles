@@ -15,7 +15,7 @@
 export COMPLETION_WAITING_DOTS="true"
 PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:$HOME/.composer/vendor/bin
 export RBENV_ROOT="$HOME/.rbenv"
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.bin
 
 if [ -d "${RBENV_ROOT}" ]; then
   export PATH="${RBENV_ROOT}/bin:${PATH}"
@@ -26,8 +26,9 @@ fi
 export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use 0.10.44
+  . "$(brew --prefix nvm)/nvm.sh"
+
+nvm use 5
 
 if [ -f $HOME/.zshrc.d/powerlevel9k.zsh ]; then
   source $HOME/.zshrc.d/powerlevel9k.zsh
@@ -258,3 +259,5 @@ dedupe_path() {
 dedupe_path
 # Hook for desk activation
 [ -n "$DESK_ENV" ] && source "$DESK_ENV"
+
+export PATH="$HOME/.bin:$PATH"
