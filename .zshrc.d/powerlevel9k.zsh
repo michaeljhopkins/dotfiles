@@ -35,12 +35,11 @@ POWERLEVEL9K_RAM_ELEMENTS=(ram_free)
 POWERLEVEL9K_TIME_FOREGROUND="200"
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S} \UE12E"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_CUSTOM_BACKGROUND="050"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
 export DEFAULT_USER="$USER"
 
-prompt_zsh_showStatus () {
+get_music_info () {
   state=`osascript -e 'tell application "Spotify" to player state as string'`;
   if [ $state = "playing" ]; then
     artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
@@ -50,6 +49,7 @@ prompt_zsh_showStatus () {
   fi
 }
 
-
+POWERLEVEL9K_CUSTOM_MUSIC_INFO="get_music_info"
+POWERLEVEL9K_CUSTOM_MUSIC_INFO_BACKGROUND="cyan"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv load ram_joined battery time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv load ram_joined custom_music_info time)
