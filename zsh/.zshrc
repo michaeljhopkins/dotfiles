@@ -261,3 +261,5 @@ dedupe_path
 [ -n "$DESK_ENV" ] && source "$DESK_ENV"
 
 export PATH="$HOME/.bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
