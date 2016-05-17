@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_MODE='awesome-flat'
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
@@ -51,5 +51,5 @@ get_music_info () {
 
 POWERLEVEL9K_CUSTOM_MUSIC_INFO="get_music_info"
 POWERLEVEL9K_CUSTOM_MUSIC_INFO_BACKGROUND="cyan"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv load ram_joined custom_music_info time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status time dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv)
