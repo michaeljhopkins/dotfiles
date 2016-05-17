@@ -38,18 +38,23 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
 export DEFAULT_USER="$USER"
+if [[ "$(uname -s)" == "Darwin" ]]; then
 
-get_music_info () {
-  state=`osascript -e 'tell application "Spotify" to player state as string'`;
-  if [ $state = "playing" ]; then
-    artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
-    track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
+    get_music_info () {
+      state=`osascript -e 'tell application "Spotify" to player state as string'`;
+      if [ $state = "playing" ]; then
+        artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
+        track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
 
-    echo -n "$artist - $track";
-  fi
-}
+        echo -n "$artist - $track";
+      fi
+    }
+    POWERLEVEL9K_CUSTOM_MUSIC_INFO="get_music_info"
+    POWERLEVEL9K_CUSTOM_MUSIC_INFO_BACKGROUND="cyan"
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status time dir vcs)
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv custom_music_info)
+else
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status time dir vcs)
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv)
+fi
 
-POWERLEVEL9K_CUSTOM_MUSIC_INFO="get_music_info"
-POWERLEVEL9K_CUSTOM_MUSIC_INFO_BACKGROUND="cyan"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status time dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv)
