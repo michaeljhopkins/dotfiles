@@ -52,4 +52,4 @@ get_music_info () {
 POWERLEVEL9K_CUSTOM_MUSIC_INFO="get_music_info"
 POWERLEVEL9K_CUSTOM_MUSIC_INFO_BACKGROUND="cyan"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status time dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv custom_music_info)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm rbenv virtualenv)

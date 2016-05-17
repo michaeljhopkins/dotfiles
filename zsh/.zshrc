@@ -1,3 +1,7 @@
+#!/bin/bash
+
+export TERM=xterm-256color;
+
 # Copyright 2006-2015 Joseph Block <jpb@apesseekingknowledge.net>
 #
 # BSD licensed, see LICENSE.txt
@@ -13,9 +17,8 @@
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 export COMPLETION_WAITING_DOTS="true"
-PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:$HOME/.composer/vendor/bin
+PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.composer/vendor/bin:/usr/bin:/bin:/sbin:$HOME/.bin
 export RBENV_ROOT="$HOME/.rbenv"
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.bin
 
 if [ -d "${RBENV_ROOT}" ]; then
   export PATH="${RBENV_ROOT}/bin:${PATH}"
@@ -26,9 +29,11 @@ fi
 export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 
 export NVM_DIR="$HOME/.nvm"
+if [[ "$(uname -s)" == "Darwin" ]]; then
   . "$(brew --prefix nvm)/nvm.sh"
-
-#nvm use stable
+else
+  . ~/.nvm/nvm.sh
+fi
 
 if [ -f $HOME/.zshrc.d/powerlevel9k.zsh ]; then
   source $HOME/.zshrc.d/powerlevel9k.zsh
@@ -43,20 +48,23 @@ unsetopt correctall
 # Base PATH
 PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin
 
-# Conditional PATH additions
-for path_candidate in /opt/local/sbin \
-  /Applications/Xcode.app/Contents/Developer/usr/bin \
-  /opt/local/bin \
-  /usr/local/share/npm/bin \
-  ~/.cabal/bin \
-  ~/.rbenv/bin \
-  ~/bin \
-  ~/src/gocode/bin
-do
-  if [ -d ${path_candidate} ]; then
-    export PATH=${PATH}:${path_candidate}
-  fi
-done
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  # Conditional PATH additions
+  for path_candidate in /opt/local/sbin /Applications/Xcode.app/Contents/Developer/usr/bin /opt/local/bin /usr/local/share/npm/bin ~/.cabal/bin ~/.rbenv/bin ~/bin ~/src/gocode/bin
+  do
+    if [ -d ${path_candidate} ]; then
+      export PATH=${PATH}:${path_candidate}
+    fi
+  done
+else
+  # Conditional PATH additions
+  for path_candidate in /opt/local/sbin /opt/local/bin /usr/local/share/npm/bin ~/.rbenv/bin ~/bin ~/src/gocode/bin
+  do
+    if [ -d ${path_candidate} ]; then
+      export PATH=${PATH}:${path_candidate}
+    fi
+  done
+fi
 
 # Fun with SSH
 if [ $(ssh-add -l | grep -c "The agent has no identities." ) -eq 1 ]; then
@@ -217,11 +225,6 @@ if [ -d ~/.zsh-completions ]; then
   done
 fi
 
-echo
-echo "Current SSH Keys:"
-ssh-add -l
-echo
-
 # Make it easy to append your own customizations that override the above by
 # loading all files from .zshrc.d directory
 mkdir -p ~/.zshrc.d
@@ -256,12 +259,6 @@ dedupe_path() {
   export PATH=${(j+:+)result}
 }
 
-nvm use stable
-
 dedupe_path
-# Hook for desk activation
-[ -n "$DESK_ENV" ] && source "$DESK_ENV"
-
-export PATH="$HOME/.bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
