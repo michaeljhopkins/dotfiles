@@ -18,22 +18,10 @@ export TERM=xterm-256color;
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 export COMPLETION_WAITING_DOTS="true"
 PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.composer/vendor/bin:/usr/bin:/bin:/sbin:$HOME/.bin
-export RBENV_ROOT="$HOME/.rbenv"
-
-if [ -d "${RBENV_ROOT}" ]; then
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-  rbenv shell 2.3.0
-fi
 
 export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 
 export NVM_DIR="$HOME/.nvm"
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  . "$(brew --prefix nvm)/nvm.sh"
-else
-  . ~/.nvm/nvm.sh
-fi
 
 if [ -f $HOME/.zshrc.d/powerlevel9k.zsh ]; then
   source $HOME/.zshrc.d/powerlevel9k.zsh
@@ -237,6 +225,19 @@ if [ -n "$(ls ~/.zshrc.d)" ]; then
   done
 fi
 
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  source "$(brew --prefix nvm)/nvm.sh"
+else
+  . ~/.nvm/nvm.sh
+fi
+export RBENV_ROOT="$HOME/.rbenv"
+
+if [ -d "${RBENV_ROOT}" ]; then
+  export PATH="${RBENV_ROOT}/bin:${PATH}"
+  eval "$(rbenv init -)"
+  rbenv shell 2.3.0
+fi
+command -v nvm > /dev/null 2>&1 && nvm use stable
 source $(which virtualenvwrapper.sh)
 workon py2
 
