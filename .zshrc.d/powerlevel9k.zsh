@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-
-POWERLEVEL9K_MODE='awesome-patched'
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  POWERLEVEL9K_MODE='awesome-patched'
+else
+  POWERLEVEL9K_MODE='awesome-fontconfig'
+fi
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
