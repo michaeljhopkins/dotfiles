@@ -28,7 +28,7 @@ export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 export NVM_DIR="$HOME/.nvm"
   . "$(brew --prefix nvm)/nvm.sh"
 
-nvm use 5
+#nvm use stable
 
 if [ -f $HOME/.zshrc.d/powerlevel9k.zsh ]; then
   source $HOME/.zshrc.d/powerlevel9k.zsh
@@ -255,6 +255,8 @@ dedupe_path() {
 
   export PATH=${(j+:+)result}
 }
+
+nvm use stable
 
 dedupe_path
 # Hook for desk activation
