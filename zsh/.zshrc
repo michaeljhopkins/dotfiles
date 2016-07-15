@@ -17,7 +17,7 @@ export TERM=xterm-256color;
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 export COMPLETION_WAITING_DOTS="true"
-PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.composer/vendor/bin:/usr/bin:/bin:/sbin:$HOME/.bin
+PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.config/composer/vendor/bin:/usr/bin:/bin:/sbin:$HOME/.bin
 
 export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 
@@ -46,7 +46,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   done
 else
   # Conditional PATH additions
-  for path_candidate in /opt/local/sbin /opt/local/bin /usr/local/share/npm/bin ~/.rbenv/bin ~/bin ~/src/gocode/bin
+  for path_candidate in /opt/local/sbin /opt/local/bin /usr/local/share/npm/bin ~/.rbenv/bin ~/bin ~/src/gocode/bin 
   do
     if [ -d ${path_candidate} ]; then
       export PATH=${PATH}:${path_candidate}
@@ -230,12 +230,12 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 else
   . ~/.nvm/nvm.sh
 fi
-export RBENV_ROOT="$HOME/.rbenv"
 
-if [ -d "${RBENV_ROOT}" ]; then
+if [ -d "$HOME/.rbenv" ]; then
+  export RBENV_VERSION="2.3.0"
+  export RBENV_ROOT="$HOME/.rbenv"
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
-  rbenv shell 2.3.0
 fi
 command -v nvm > /dev/null 2>&1 && nvm use stable
 source $(which virtualenvwrapper.sh)
