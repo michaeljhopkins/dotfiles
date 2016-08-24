@@ -37,7 +37,9 @@ unsetopt correctall
 PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
+	export HOMEBREW_GITHUB_API_TOKEN="fe51fcc13ef45934965a7333336a3fd8ec048e00"
   # Conditional PATH additions
+  export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
   for path_candidate in /opt/local/sbin /Applications/Xcode.app/Contents/Developer/usr/bin /opt/local/bin /usr/local/share/npm/bin ~/.cabal/bin ~/.rbenv/bin ~/bin ~/src/gocode/bin
   do
     if [ -d ${path_candidate} ]; then
@@ -199,12 +201,6 @@ zstyle ":completion:*" verbose true
 zstyle ":completion:*:*:kill:*:processes" list-colors "=(#b) #([0-9]#)*=0=01;31"
 zstyle ":completion:*:kill:*" command "ps -u $USER -o pid,%cpu,tty,cputime,cmd"
 
-# Speed up autocomplete, force prefix mapping
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
-
 # Load any custom zsh completions we've installed
 if [ -d ~/.zsh-completions ]; then
   for completion in ~/.zsh-completions/*
@@ -213,17 +209,7 @@ if [ -d ~/.zsh-completions ]; then
   done
 fi
 
-# Make it easy to append your own customizations that override the above by
-# loading all files from .zshrc.d directory
-mkdir -p ~/.zshrc.d
-if [ -n "$(ls ~/.zshrc.d)" ]; then
-  for dotfile in ~/.zshrc.d/*
-  do
-    if [ -r "${dotfile}" ]; then
-      source "${dotfile}"
-    fi
-  done
-fi
+
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
   source "$(brew --prefix nvm)/nvm.sh"
@@ -240,6 +226,19 @@ fi
 command -v nvm > /dev/null 2>&1 && nvm use stable
 source $(which virtualenvwrapper.sh)
 workon py2
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Make it easy to append your own customizations that override the above by
+# loading all files from .zshrc.d directory
+mkdir -p ~/.zshrc.d
+if [ -n "$(ls ~/.zshrc.d)" ]; then
+  for dotfile in ~/.zshrc.d/*
+  do
+    if [ -r "${dotfile}" ]; then
+      source "${dotfile}"
+    fi
+  done
+fi
 
 # In case a plugin adds a redundant path entry, remove duplicate entries
 # from PATH
@@ -261,5 +260,3 @@ dedupe_path() {
 }
 
 dedupe_path
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

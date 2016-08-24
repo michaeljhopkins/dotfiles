@@ -39,28 +39,23 @@ load-starter-plugin-list() {
   # Tab complete rakefile targets
   zgen load unixorn/rake-completion.zshplugin
 
+   # Colorize the things if you have grc installed. Well, some of the
+  # things, anyway.
+  zgen load unixorn/warhol.plugin.zsh
+
   # Automatically run zgen update and zgen selfupdate every 7 days
   zgen load unixorn/autoupdate-zgen
 
   zgen load unixorn/jpb.zshplugin
 
-  zgen load unixorn/tumult.plugin.zsh
-
-  # Warn you when you run a command that you've got an alias for
-  zgen load djui/alias-tips
-
-  # Add my collection of git helper scripts
-  zgen load unixorn/git-extra-commands
-
   # A collection of scripts that might be useful to sysadmins
   zgen load skx/sysadmin-util
-
-  # Adds aliases to open your current repo & branch on github.
-  zgen load peterhurford/git-it-on.zsh
 
   # Tom Limoncelli's tooling for storing private information (keys, etc)
   # in a repository securely by encrypting them with gnupg
   zgen load StackExchange/blackbox
+
+  zgen load horosgrisa/mysql-colorize
 
   # Load some oh-my-zsh plugins
   zgen oh-my-zsh plugins/pip
@@ -94,9 +89,6 @@ load-starter-plugin-list() {
   # Load more completion files for zsh from the zsh-lovers github repo
   zgen load zsh-users/zsh-completions src
 
-  # Docker completion
-  zgen load srijanshetty/docker-zsh
-
   # Load me last
   GENCOMPL_FPATH=$HOME/.zsh/complete
 
@@ -104,6 +96,9 @@ load-starter-plugin-list() {
   # if they have getopt-style help text. It doesn't generate them on the fly,
   # you'll have to explicitly generate a completion, but it's still quite cool.
   zgen load RobSis/zsh-completion-generator
+
+  # Add Fish-like autosuggestions to your ZSH
+  zgen load zsh-users/zsh-autosuggestions
 
   # k is a zsh script / plugin to make directory listings more readable,
   # adding a bit of color and some git status information on files and directories
