@@ -80,6 +80,10 @@ load-starter-plugin-list() {
 
   zgen load t413/zsh-background-notify
 
+  zgen load lukechilds/zsh-nvm
+  zgen load lukechilds/zsh-better-npm-completion
+
+
   # A set of shell functions to make it easy to install small apps and
   # utilities distributed with pip.
   zgen load sharat87/pip-app
