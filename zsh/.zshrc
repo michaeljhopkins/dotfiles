@@ -216,7 +216,8 @@ else
   . ~/.nvm/nvm.sh
 fi
 
-if [ -d "$HOME/.rvm" ]; then
+if [[ -s $HOME/.rvm/scripts/rvm ]]; then
+  source $HOME/.rvm/scripts/rvm;
 else
   export RBENV_VERSION="2.3.0"
   export RBENV_ROOT="$HOME/.rbenv"
@@ -261,3 +262,5 @@ dedupe_path() {
 }
 
 dedupe_path
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
