@@ -187,6 +187,5 @@ alias ...="cd ../.."
 # Personal Aliases
 
 alias k="k -Ah"
-alias forge="ssh forge@54.193.38.170"
-alias forge2="ssh forge@54.85.108.11"
+alias forge="ssh forge@54.183.84.136"
 
