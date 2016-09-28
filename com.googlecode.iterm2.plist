@@ -415,9 +415,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>610 346 700 622 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>473 213 796 473 0 0 1920 1057 </string>
+	<string>473 191 918 495 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>960 590 585 452 0 0 1920 1057 </string>
+	<string>960 533 665 502 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>768 92 1145 965 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -1140,7 +1140,7 @@
 			<key>Use Bright Bold</key>
 			<true/>
 			<key>Use HFS Plus Mapping</key>
-			<false/>
+			<true/>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
@@ -1895,6 +1895,10 @@
 	<integer>0</integer>
 	<key>NoSyncInstallationId</key>
 	<string>C4AB4907-0E1B-4C83-B6CA-F4D4055F2C17</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
