@@ -21,7 +21,6 @@ PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.config/composer/vendor/bin:
 
 export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 
-export NVM_DIR="$HOME/.nvm"
 
 if [ -f $HOME/.zshrc.d/powerlevel9k.zsh ]; then
   source $HOME/.zshrc.d/powerlevel9k.zsh
@@ -217,15 +216,17 @@ else
   . ~/.nvm/nvm.sh
 fi
 
-if [ -d "$HOME/.rbenv" ]; then
+if [ -d "$HOME/.rvm" ]; then
+else
   export RBENV_VERSION="2.3.0"
   export RBENV_ROOT="$HOME/.rbenv"
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
 fi
+
 command -v nvm > /dev/null 2>&1 && nvm use stable
-source $(which virtualenvwrapper.sh)
-workon py2
+which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.sh)
+command -v workon > /dev/null 2>&1 && workon py2
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 # Make it easy to append your own customizations that override the above by
