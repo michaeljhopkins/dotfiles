@@ -221,39 +221,6 @@ function httpserver() {
   python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
 
-# Asb functions
-
-
-function asbclean() {
-  asb
-  rm -rf .env
-  cp .env.example .env
-  cd $1
-  rm -rf vendor 
-  rm -rf node_modules 
-  rm -rf bootstrap/cache/*
-  rm -rf storage/framework/views*
-  rm -rf storage/framework/cache*
-  rm -rf storage/framework/sessions*
-  rm -rf .env
-  rm -rf .env.example
-  cp ../.env .env
-}
-
-function asbfresh() {
-  folders=(Admin Api Customer Olympus)
-  asb
-  cd Shared
-  rm -rf vendor
-  composer install
-  for i in "${folders[@]}"; do
-    asbclean $i
-    composer install
-    npm install
-    bower install
-    done
-}
-
 # Pentest functions
 function masstcpdump () {
   LOOP=1

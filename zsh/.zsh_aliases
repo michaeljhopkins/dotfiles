@@ -11,6 +11,7 @@ export GOPATH=~/gocode
 # yes, these tests are ugly. They do however, work.
 if [[ "$(uname -s)" == "Darwin" ]]; then
   # do OS X specific things
+  alias rr="railroady"
   alias eject="diskutil eject"
   alias flushdns="dscacheutil -flushcache"
   alias killSS='kill -9 $(ps ww |grep ScreenSaverEngine |grep -v grep |awk "{print $1}")'

@@ -21,11 +21,6 @@ PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.config/composer/vendor/bin:
 
 export PATH="$PATH:$HOME/.local/bin:vendor/bin"
 
-
-if [ -f $HOME/.zshrc.d/powerlevel9k.zsh ]; then
-  source $HOME/.zshrc.d/powerlevel9k.zsh
-fi
-
 # Correct spelling for commands
 setopt correct
 
@@ -39,7 +34,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 	export HOMEBREW_GITHUB_API_TOKEN="fe51fcc13ef45934965a7333336a3fd8ec048e00"
   # Conditional PATH additions
   export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
-  for path_candidate in /opt/local/sbin /Applications/Xcode.app/Contents/Developer/usr/bin /opt/local/bin /usr/local/share/npm/bin ~/.cabal/bin ~/.rbenv/bin ~/bin ~/src/gocode/bin
+  for path_candidate in /opt/local/sbin /Applications/Xcode.app/Contents/Developer/usr/bin /opt/local/bin /usr/local/share/npm/bin ~/.cabal/bin ~/bin ~/src/gocode/bin
   do
     if [ -d ${path_candidate} ]; then
       export PATH=${PATH}:${path_candidate}
@@ -47,7 +42,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   done
 else
   # Conditional PATH additions
-  for path_candidate in /opt/local/sbin /opt/local/bin /usr/local/share/npm/bin ~/.rbenv/bin ~/bin ~/src/gocode/bin 
+  for path_candidate in /opt/local/sbin /opt/local/bin /usr/local/share/npm/bin ~/bin ~/src/gocode/bin
   do
     if [ -d ${path_candidate} ]; then
       export PATH=${PATH}:${path_candidate}
@@ -161,18 +156,6 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   fi
 fi
 
-# deal with screen, if we're using it - courtesy MacOSXHints.com
-# Login greeting ------------------
-if [ "$TERM" = "screen" -a ! "$SHOWED_SCREEN_MESSAGE" = "true" ]; then
-  detached_screens=$(screen -list | grep Detached)
-  if [ ! -z "$detached_screens" ]; then
-    echo "+---------------------------------------+"
-    echo "| Detached screens are available:       |"
-    echo "$detached_screens"
-    echo "+---------------------------------------+"
-  fi
-fi
-
 if [ -f /usr/local/etc/grc.bashrc ]; then
   source "$(brew --prefix)/etc/grc.bashrc"
 
@@ -217,9 +200,10 @@ else
 fi
 
 if [[ -s $HOME/.rvm/scripts/rvm ]]; then
+  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
   source $HOME/.rvm/scripts/rvm;
 else
-  export RBENV_VERSION="2.3.0"
+  export RBENV_VERSION="2.3.1"
   export RBENV_ROOT="$HOME/.rbenv"
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
@@ -230,17 +214,6 @@ which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.
 command -v workon > /dev/null 2>&1 && workon py2
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-# Make it easy to append your own customizations that override the above by
-# loading all files from .zshrc.d directory
-mkdir -p ~/.zshrc.d
-if [ -n "$(ls ~/.zshrc.d)" ]; then
-  for dotfile in ~/.zshrc.d/*
-  do
-    if [ -r "${dotfile}" ]; then
-      source "${dotfile}"
-    fi
-  done
-fi
 
 # In case a plugin adds a redundant path entry, remove duplicate entries
 # from PATH
@@ -262,5 +235,3 @@ dedupe_path() {
 }
 
 dedupe_path
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

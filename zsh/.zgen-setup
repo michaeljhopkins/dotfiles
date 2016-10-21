@@ -12,6 +12,9 @@ if [ ! -f ~/zgen/zgen.zsh ]; then
   git clone git@github.com:tarjoilija/zgen.git
   popd
 fi
+if [ -f $HOME/.dotfiles/zsh/powerlevel9k.zsh ]; then
+  source $HOME/.dotfiles/zsh/powerlevel9k.zsh
+fi
 source ~/zgen/zgen.zsh
 
 load-starter-plugin-list() {
