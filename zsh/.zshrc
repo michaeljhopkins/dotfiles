@@ -1,7 +1,5 @@
 #!/bin/bash
-
 export TERM=xterm-256color;
-
 # Copyright 2006-2015 Joseph Block <jpb@apesseekingknowledge.net>
 #
 # BSD licensed, see LICENSE.txt
@@ -76,11 +74,20 @@ fi
 
 # Now that we have $PATH set up and ssh keys loaded, configure zgen.
 
+
+if [ -f ~/.dotfiles/zsh/powerlevel9k.zsh ]; then
+  source ~/.dotfiles/zsh/powerlevel9k.zsh
+fi
+
 # start zgen
 if [ -f ~/.zgen-setup ]; then
   source ~/.zgen-setup
 fi
 # end zgen
+
+zgen load bhilburn/powerlevel9k powerlevel9k
+# Bullet train prompt setup
+#zgen load oskarkrawczyk/honukai-iterm-zsh honukai
 
 # set some history options
 setopt append_history
@@ -194,26 +201,32 @@ fi
 
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  source "$(brew --prefix nvm)/nvm.sh"
+  if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
+    source "$(brew --prefix nvm)/nvm.sh";
+  fi
 else
-  . ~/.nvm/nvm.sh
+  if [[ -s $HOME/.nvm/nvm.sh ]]; then
+    . ~/.nvm/nvm.sh
+  fi
 fi
 
 if [[ -s $HOME/.rvm/scripts/rvm ]]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
   source $HOME/.rvm/scripts/rvm;
 else
-  export RBENV_VERSION="2.3.1"
   export RBENV_ROOT="$HOME/.rbenv"
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
 fi
+eval $(docker-machine env)
 
 command -v nvm > /dev/null 2>&1 && nvm use stable
 which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.sh)
 command -v workon > /dev/null 2>&1 && workon py2
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+fi
 
 # In case a plugin adds a redundant path entry, remove duplicate entries
 # from PATH
@@ -233,5 +246,5 @@ dedupe_path() {
 
   export PATH=${(j+:+)result}
 }
-
+SONAR_SCANNER_HOME=/usr/local/Cellar/sonar-scanner/2.8/libexec
 dedupe_path

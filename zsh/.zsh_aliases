@@ -190,3 +190,4 @@ alias ...="cd ../.."
 alias k="k -Ah"
 alias forge="ssh forge@54.183.84.136"
 
+alias whatsmyip="curl ipecho.net/plain; echo"
