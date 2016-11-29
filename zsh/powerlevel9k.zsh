@@ -57,4 +57,4 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
 POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%K{white}%F{black} `date +%T` \UE12E %f%k%F{white}%f "
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rbenv custom_music_info ram load_joined)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rbenv virtualenv custom_music_info ram load_joined)

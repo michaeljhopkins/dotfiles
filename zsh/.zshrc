@@ -32,7 +32,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 	export HOMEBREW_GITHUB_API_TOKEN="fe51fcc13ef45934965a7333336a3fd8ec048e00"
   # Conditional PATH additions
   export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
-  for path_candidate in /opt/local/sbin /Applications/Xcode.app/Contents/Developer/usr/bin /opt/local/bin /usr/local/share/npm/bin ~/.cabal/bin ~/bin ~/src/gocode/bin
+  for path_candidate in /opt/local/sbin /Applications/Xcode.app/Contents/Developer/usr/bin /opt/local/bin /usr/local/share/npm/bin ~/.cabal/bin ~/bin ~/src/gocode/bin ~/.rbenv/bin
   do
     if [ -d ${path_candidate} ]; then
       export PATH=${PATH}:${path_candidate}
@@ -214,7 +214,8 @@ if [[ -s $HOME/.rvm/scripts/rvm ]]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
   source $HOME/.rvm/scripts/rvm;
 else
-  export RBENV_ROOT="$HOME/.rbenv"
+  export RBENV_VERSION="2.3.2"
+  export RBENV_ROOT=/usr/local/var/rbenv
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
 fi
@@ -223,6 +224,7 @@ eval $(docker-machine env)
 command -v nvm > /dev/null 2>&1 && nvm use stable
 which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.sh)
 command -v workon > /dev/null 2>&1 && workon py2
+zgen load bhilburn/powerlevel9k powerlevel9k
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
