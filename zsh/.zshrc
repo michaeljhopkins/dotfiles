@@ -15,9 +15,7 @@ export TERM=xterm-256color;
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 export COMPLETION_WAITING_DOTS="true"
-PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.config/composer/vendor/bin:/usr/bin:/bin:/sbin:$HOME/.bin
-
-export PATH="$PATH:$HOME/.local/bin:vendor/bin"
+PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:$HOME/.config/composer/vendor/bin:/usr/bin:/bin:/sbin:$HOME/.bin/$HOME/.local/bin:vendor/bin:/usr/local/opt/php70/bin/php:/opt/local/sbin:/opt/local/bin:/usr/local/share/npm/bin:~/.cabal/bin:~/bin:~/src/gocode/bin:~/.rbenv/bin:/usr/local/var/rbenv/bin
 
 # Correct spelling for commands
 setopt correct
@@ -27,6 +25,7 @@ unsetopt correctall
 
 # Base PATH
 PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin
+
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
 	export HOMEBREW_GITHUB_API_TOKEN="fe51fcc13ef45934965a7333336a3fd8ec048e00"
@@ -71,10 +70,7 @@ if [ -f ~/.ssh/id_dsa ]; then
     ssh-add ~/.ssh/id_dsa
   fi
 fi
-
 # Now that we have $PATH set up and ssh keys loaded, configure zgen.
-
-
 if [ -f ~/.dotfiles/zsh/powerlevel9k.zsh ]; then
   source ~/.dotfiles/zsh/powerlevel9k.zsh
 fi
@@ -136,6 +132,7 @@ bindkey "^ " magic-space           # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
 
 # Customize to your needs...
+# Customize to your needs...
 # Stuff that works on bash or zsh
 if [ -r ~/.sh_aliases ]; then
   source ~/.sh_aliases
@@ -149,30 +146,6 @@ fi
 if [ -r ~/.zsh_functions ]; then
   source ~/.zsh_functions
 fi
-
-export LOCATE_PATH=/var/db/locate.database
-
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  # We're on osx
-  [ -f ~/.osx_aliases ] && source ~/.osx_aliases
-  if [ -d ~/.osx_aliases.d ]; then
-    for alias_file in ~/.osx_aliases.d/*
-    do
-      source $alias_file
-    done
-  fi
-fi
-
-if [ -f /usr/local/etc/grc.bashrc ]; then
-  source "$(brew --prefix)/etc/grc.bashrc"
-
-  function ping5(){
-    grc --color=auto ping -c 5 "$@"
-  }
-else
-  alias ping5='ping -c 5'
-fi
-
 
 zstyle ":completion:*" auto-description "specify: %d"
 zstyle ":completion:*" completer _expand _complete _correct _approximate
@@ -197,9 +170,6 @@ if [ -d ~/.zsh-completions ]; then
     source "$completion"
   done
 fi
-
-
-
 if [[ "$(uname -s)" == "Darwin" ]]; then
   if [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
     source "$(brew --prefix nvm)/nvm.sh";
@@ -210,26 +180,27 @@ else
   fi
 fi
 
-if [[ -s $HOME/.rvm/scripts/rvm ]]; then
-  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-  source $HOME/.rvm/scripts/rvm;
-else
+if [[ -s /usr/local/var/rbenv ]]; then
   export RBENV_VERSION="2.3.2"
   export RBENV_ROOT=/usr/local/var/rbenv
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
 fi
-eval $(docker-machine env)
 
+command -v docker-machine > /dev/null 2>&1 && eval $(docker-machine env)
 command -v nvm > /dev/null 2>&1 && nvm use stable
 which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.sh)
 command -v workon > /dev/null 2>&1 && workon py2
-zgen load bhilburn/powerlevel9k powerlevel9k
 
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [ -d /usr/local/bin/virtualenvwrapper.sh ]; then
+  source /usr/local/bin/virtualenvwrapper.sh
 fi
-
+zgen load bhilburn/powerlevel9k powerlevel9k
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  if [ -s $HOME/.iterm2_shell_integration.zsh ]; then
+    source "$HOME/.iterm2_shell_integration.zsh"
+  fi
+fi
 # In case a plugin adds a redundant path entry, remove duplicate entries
 # from PATH
 #
@@ -248,5 +219,4 @@ dedupe_path() {
 
   export PATH=${(j+:+)result}
 }
-SONAR_SCANNER_HOME=/usr/local/Cellar/sonar-scanner/2.8/libexec
 dedupe_path
