@@ -181,16 +181,15 @@ else
 fi
 
 if [[ -s /usr/local/var/rbenv ]]; then
-  export RBENV_VERSION="2.3.2"
+  export RBENV_VERSION="2.4.0"
   export RBENV_ROOT=/usr/local/var/rbenv
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
 fi
 
-command -v docker-machine > /dev/null 2>&1 && eval $(docker-machine env)
 command -v nvm > /dev/null 2>&1 && nvm use stable
 which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.sh)
-command -v workon > /dev/null 2>&1 && workon py2
+command -v workon > /dev/null 2>&1 && workon py3
 
 if [ -d /usr/local/bin/virtualenvwrapper.sh ]; then
   source /usr/local/bin/virtualenvwrapper.sh

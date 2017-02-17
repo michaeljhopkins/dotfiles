@@ -5,18 +5,6 @@
 # Copyright 2006-2015 Joseph Block <jpb@unixorn.net>
 #
 # BSD licensed, see LICENSE.txt
-
-function docker:reload() {
-  docker-compose down --remove-orphans
-  docker rm $(docker ps -a -q);
-  docker rmi $(docker images -q);
-  docker-compose -f docker-compose.yml -f docker-compose.development.build.yml up -d
-}
-
-fucntion dmach() {
-  docker-machine start default && eval $(docker-machine env)
-}
-
 function larafresh() {
   composer dump && \
   rm -rf bootstrap/cache/* storage/framework/sessions/* storage/framework/cache/* storage/framework/views/* vendor node_modules && \
