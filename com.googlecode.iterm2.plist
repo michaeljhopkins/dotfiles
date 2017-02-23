@@ -406,7 +406,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>260 296 796 473 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 92 955 965 0 0 1920 1057 </string>
+	<string>960 8 955 1049 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1153,7 +1153,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>FA79A9A0-A321-4B70-AB80-E73B058DA440</string>
 	<key>NoSyncLastTipTime</key>
-	<real>505852769.27416599</real>
+	<real>509429723.56520498</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1179,6 +1179,19 @@
 		<string>0011</string>
 		<string>0012</string>
 		<string>0013</string>
+		<string>0014</string>
+		<string>0015</string>
+		<string>0016</string>
+		<string>0017</string>
+		<string>0018</string>
+		<string>0019</string>
+		<string>0020</string>
+		<string>0021</string>
+		<string>0022</string>
+		<string>0023</string>
+		<string>0024</string>
+		<string>0025</string>
+		<string>0026</string>
 	</array>
 	<key>PointerActions</key>
 	<dict>
@@ -1226,7 +1239,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-01-11T18:39:36Z</date>
+	<date>2017-02-22T04:15:23Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ToolbeltTools</key>
@@ -1235,7 +1248,11 @@
 	</array>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>findIgnoreCase_iTerm</key>
+	<true/>
+	<key>findRegex_iTerm</key>
+	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.14</string>
 </dict>
 </plist>
