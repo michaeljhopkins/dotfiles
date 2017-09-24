@@ -8,12 +8,7 @@ PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin
 if [[ "$(uname -s)" == "Darwin" ]]; then
 	export HOMEBREW_GITHUB_API_TOKEN="fe51fcc13ef45934965a7333336a3fd8ec048e00"
 	export PATH=/opt/local/sbin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/usr/local/share/npm/bin:~/.cabal/bin:~/bin:~/.rbenv/bin:/usr/local/opt/php70/bin:$PATH
-	source "/usr/local/opt/nvm/nvm.sh";
-	source "$HOME/.iterm2_shell_integration.zsh"
 else
-	if [[ -s $HOME/.nvm/nvm.sh ]]; then
-		. ~/.nvm/nvm.sh
-	fi
 	for path_candidate in /opt/local/sbin /opt/local/bin /usr/local/share/npm/bin ~/bin ~/src/gocode/bin
 	do
 		if [ -d ${path_candidate} ]; then
@@ -43,6 +38,8 @@ REPORTTIME=2
 TIMEFMT="%U user %S system %P cpu %*Es total"
 source ~/.zsh_aliases
 source ~/.zsh_functions
+source /usr/local/bin/virtualenvwrapper.sh
+workon py3
 zstyle ":completion:*" auto-description "specify: %d"
 zstyle ":completion:*" completer _expand _complete _correct _approximate
 zstyle ":completion:*" format "Completing %d"
@@ -58,7 +55,7 @@ zstyle ":completion:*" verbose true
 zstyle ":completion:*:*:kill:*:processes" list-colors "=(#b) #([0-9]#)*=0=01;31"
 zstyle ":completion:*:kill:*" command "ps -u $USER -o pid,%cpu,tty,cputime,cmd"
 if [[ -s /usr/local/var/rbenv ]]; then
-	export RBENV_VERSION="2.4.0"
+	export RBENV_VERSION="2.4.2"
 	export RBENV_ROOT=/usr/local/var/rbenv
 	export PATH="/usr/local/var/rbenv/shims:/usr/local/var/rbenv/bin:$PATH"
 	export RBENV_SHELL=zsh
