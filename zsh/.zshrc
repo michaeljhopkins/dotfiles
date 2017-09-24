@@ -185,8 +185,8 @@ if [[ -s /usr/local/var/rbenv ]]; then
   eval "$(rbenv init -)"
 fi
 
-which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.sh)
-command -v workon > /dev/null 2>&1 && workon py3
+#which virtualenvwrapper.sh > /dev/null 2>&1 && source $(which virtualenvwrapper.sh)
+#command -v workon > /dev/null 2>&1 && workon py3
 
 if [ -d /usr/local/bin/virtualenvwrapper.sh ]; then
   source /usr/local/bin/virtualenvwrapper.sh
