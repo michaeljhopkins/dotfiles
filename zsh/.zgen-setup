@@ -36,8 +36,6 @@ load-starter-plugin-list() {
   bindkey "$terminfo[kcuu1]" history-substring-search-up
   bindkey "$terminfo[kcud1]" history-substring-search-down
 
-  # Tab complete rakefile targets
-  zgen load unixorn/rake-completion.zshplugin
 
    # Colorize the things if you have grc installed. Well, some of the
   # things, anyway.
@@ -48,41 +46,23 @@ load-starter-plugin-list() {
 
   zgen load unixorn/jpb.zshplugin
 
-  # A collection of scripts that might be useful to sysadmins
-  zgen load skx/sysadmin-util
-
-  # Tom Limoncelli's tooling for storing private information (keys, etc)
-  # in a repository securely by encrypting them with gnupg
-  zgen load StackExchange/blackbox
-
-  zgen load horosgrisa/mysql-colorize
-
   # Load some oh-my-zsh plugins
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh plugins/nvm
   zgen oh-my-zsh plugins/github
   zgen oh-my-zsh plugins/python
-  zgen oh-my-zsh plugins/vagrant
   zgen oh-my-zsh plugins/cp
   zgen oh-my-zsh plugins/extract
-  zgen oh-my-zsh plugins/bower
   zgen oh-my-zsh plugins/node
-  zgen oh-my-zsh plugins/nvm
+  zgen oh-my-zsh plugins/osx
   zgen oh-my-zsh plugins/npm
   zgen oh-my-zsh plugins/composer
   zgen oh-my-zsh plugins/rbenv
   zgen oh-my-zsh plugins/gem
   zgen oh-my-zsh plugins/bgnotify
   zgen oh-my-zsh plugins/brew
-  zgen oh-my-zsh plugins/colored-man-pages
   zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/osx
-  zgen oh-my-zsh plugins/docker-compose
-
-  zgen load leonhartX/docker-machine-zsh-completion
-  zgen load t413/zsh-background-notify
-
-  zgen load lukechilds/zsh-nvm
   zgen load lukechilds/zsh-better-npm-completion
 
 
