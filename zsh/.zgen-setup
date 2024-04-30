@@ -19,7 +19,7 @@ load-starter-plugin-list() {
   ZGEN_COMPLETIONS=()
 
   zgen oh-my-zsh
-  zgen load bhilburn/powerlevel9k powerlevel9k
+  zgen load bhilburn/powerlevel10k powerlevel10k
 
   # If you want to customize your plugin list, create a file named
   # .zgen-local-plugins in your home directory. That file will be sourced

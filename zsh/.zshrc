@@ -24,7 +24,7 @@ setopt correct
 unsetopt correctall
 
 # Base PATH
-PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin
+PATH=/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:/home/m/.config/bin
 
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
